@@ -96,3 +96,4 @@ npm run build
 - [具体使用手册](docs/05-user-manual.md)：说明本地运行、演示路径、状态贴纸、真实 AI 接口和验收清单。
 - [最终提交检查清单](docs/06-final-submission-checklist.md)：按照初赛提交指南核对 Demo 链接、录屏和说明文档。
 - [说明文档 PDF 正文草稿](docs/07-submission-pdf-draft.md)：可直接整理成参赛 PDF 的完整正文。
+- [GitHub 部署指南](docs/08-github-deployment.md)：说明如何推送到 GitHub，并通过 Vercel 部署保留 Next.js API。

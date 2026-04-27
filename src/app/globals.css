@@ -142,6 +142,26 @@ textarea {
   transform: none;
 }
 
+@media (max-width: 899px) {
+  .radar-stack {
+    width: 100vw;
+    width: 100dvw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-left: calc(50% - 50dvw);
+    margin-right: 0;
+    padding-inline: 1rem;
+  }
+
+  .radar-stack > * {
+    width: min(100%, 430px);
+  }
+
+  .home-radar-frame {
+    width: min(100%, 430px);
+  }
+}
+
 .sticker-card {
   border: 7px solid var(--white);
   border-radius: 32px;

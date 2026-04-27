@@ -12,7 +12,7 @@ const topActions = [...missedItems, ...todayItems].slice(0, 3);
 
 export function HomeRadar() {
   return (
-    <div className="phone-frame">
+    <div className="phone-frame home-radar-frame">
       <div className="phone-inner p-4">
         <div className="flex items-center justify-between gap-3">
           <div>
@@ -27,7 +27,7 @@ export function HomeRadar() {
           title={overallStatus.title}
           subtitle={overallStatus.description}
           size="lg"
-          className="mx-auto mt-4 w-[86%]"
+          className="home-radar-sticker mx-auto mt-4"
           priority
         />
 

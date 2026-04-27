@@ -38,7 +38,7 @@ export default function Home() {
 
           </div>
 
-          <div className="mx-auto grid w-full max-w-[430px] gap-4">
+          <div className="radar-stack mx-auto grid w-full max-w-[430px] gap-4">
             <HomeRadar />
             <CampusCalendar />
           </div>

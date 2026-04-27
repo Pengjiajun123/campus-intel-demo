@@ -117,6 +117,31 @@ textarea {
   width: min(calc(100vw - 1.5rem), 430px);
 }
 
+.radar-stack {
+  width: min(100%, 430px);
+  max-width: calc(100vw - 2rem);
+  max-width: min(430px, calc(100dvw - 2rem));
+  justify-items: center;
+  place-self: center;
+}
+
+.radar-stack > * {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.home-radar-frame {
+  width: min(100%, 430px);
+  max-width: min(430px, calc(100dvw - 2rem));
+  justify-self: center;
+}
+
+.home-radar-sticker {
+  width: min(86%, 20rem);
+  justify-self: center;
+  transform: none;
+}
+
 .sticker-card {
   border: 7px solid var(--white);
   border-radius: 32px;
@@ -220,7 +245,7 @@ textarea {
   color: var(--ink);
   cursor: pointer;
   appearance: none;
-  transform: rotate(-2deg);
+  transform: none;
   transition:
     transform 220ms var(--ease-bounce),
     filter 220ms ease;
@@ -576,7 +601,7 @@ textarea:focus-visible {
   .status-sticker,
   .status-sticker:hover,
   .status-sticker:active {
-    transform: rotate(-2deg);
+    transform: none;
     filter: none;
   }
 

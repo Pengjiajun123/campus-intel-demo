@@ -22,12 +22,12 @@ const sizeClass = {
 };
 
 const imageByMood: Record<StickerMood, string> = {
-  missed: "/stickers/missed-blue-sad.png",
-  overload: "/stickers/overload-red-angry.png",
-  busy: "/stickers/busy-orange-nervous.png",
-  urgent: "/stickers/urgent-yellow-uncomfortable.png",
-  easy: "/stickers/easy-pink-happy.png",
-  clear: "/stickers/clear-green-happy.png",
+  missed: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/missed-blue-sad.png`,
+  overload: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/overload-red-angry.png`,
+  busy: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/busy-orange-nervous.png`,
+  urgent: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/urgent-yellow-uncomfortable.png`,
+  easy: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/easy-pink-happy.png`,
+  clear: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/stickers/clear-green-happy.png`,
 };
 
 const bubbleByMood: Record<StickerMood, string> = {

@@ -1,0 +1,118 @@
+"use client";
+
+import { useState, type CSSProperties } from "react";
+import Image from "next/image";
+import type { StickerMood, StickerStatus } from "@/lib/status";
+
+type StatusStickerProps = {
+  status: StickerStatus;
+  label?: string;
+  description?: string;
+  title?: string;
+  subtitle?: string;
+  size?: "sm" | "md" | "lg";
+  interactive?: boolean;
+  className?: string;
+};
+
+const sizeClass = {
+  sm: "sticker-size-sm",
+  md: "sticker-size-md",
+  lg: "sticker-size-lg",
+};
+
+const imageByMood: Record<StickerMood, string> = {
+  missed: "/stickers/missed-blue-sad.png",
+  overload: "/stickers/overload-red-angry.png",
+  busy: "/stickers/busy-orange-nervous.png",
+  urgent: "/stickers/urgent-yellow-uncomfortable.png",
+  easy: "/stickers/easy-pink-happy.png",
+  clear: "/stickers/clear-green-happy.png",
+};
+
+const bubbleByMood: Record<StickerMood, string> = {
+  missed: "先补救这个！",
+  overload: "马上处理！",
+  busy: "别拖太久",
+  urgent: "时间有点紧",
+  easy: "今天还稳",
+  clear: "今日清爽",
+};
+
+const particles = [
+  { x: "-56px", y: "-46px", shape: "dot" },
+  { x: "52px", y: "-50px", shape: "star" },
+  { x: "72px", y: "-4px", shape: "heart" },
+  { x: "46px", y: "54px", shape: "dot" },
+  { x: "-34px", y: "60px", shape: "star" },
+  { x: "-72px", y: "10px", shape: "heart" },
+  { x: "10px", y: "-72px", shape: "dot" },
+  { x: "2px", y: "70px", shape: "heart" },
+];
+
+export function StatusSticker({
+  status,
+  label,
+  description,
+  title,
+  subtitle,
+  size = "md",
+  interactive = true,
+  className = "",
+}: StatusStickerProps) {
+  const [burstKey, setBurstKey] = useState(0);
+  const [isPopping, setIsPopping] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
+  const displayTitle = label ?? title ?? status.title;
+  const displayDescription = description ?? subtitle ?? status.shortLabel;
+  const imageSrc = imageByMood[status.mood];
+
+  function handleActivate() {
+    if (!interactive) {
+      return;
+    }
+
+    setBurstKey((current) => current + 1);
+    setIsPopping(true);
+    setShowBubble(true);
+    window.setTimeout(() => setIsPopping(false), 460);
+    window.setTimeout(() => setShowBubble(false), 900);
+  }
+
+  const Element = interactive ? "button" : "div";
+
+  return (
+    <Element
+      type={interactive ? "button" : undefined}
+      onClick={interactive ? handleActivate : undefined}
+      className={`status-sticker ${isPopping ? "is-popping" : ""} ${sizeClass[size]} ${className}`}
+      aria-label={`${displayTitle}，${displayDescription}。点击查看状态反馈`}
+    >
+      <span className="status-sticker-art" aria-hidden="true">
+        <Image src={imageSrc} alt="" width={760} height={760} className="status-sticker-img" draggable={false} />
+      </span>
+
+      <span className="sticker-copy">
+        <span className="sticker-copy-title">{displayTitle}</span>
+        <span className="sticker-copy-subtitle">{displayDescription}</span>
+      </span>
+
+      {interactive && showBubble ? (
+        <span key={`bubble-${burstKey}`} className="sticker-bubble" aria-hidden="true">
+          {bubbleByMood[status.mood]}
+        </span>
+      ) : null}
+
+      {interactive && isPopping
+        ? particles.map((particle, index) => (
+            <span
+              key={`${burstKey}-${index}`}
+              className={`sticker-particle particle-${particle.shape}`}
+              style={{ "--x": particle.x, "--y": particle.y } as CSSProperties}
+              aria-hidden="true"
+            />
+          ))
+        : null}
+    </Element>
+  );
+}

@@ -12,6 +12,7 @@ type StatusStickerProps = {
   subtitle?: string;
   size?: "sm" | "md" | "lg";
   interactive?: boolean;
+  priority?: boolean;
   className?: string;
 };
 
@@ -58,6 +59,7 @@ export function StatusSticker({
   subtitle,
   size = "md",
   interactive = true,
+  priority = true,
   className = "",
 }: StatusStickerProps) {
   const [burstKey, setBurstKey] = useState(0);
@@ -89,7 +91,17 @@ export function StatusSticker({
       aria-label={`${displayTitle}，${displayDescription}。点击查看状态反馈`}
     >
       <span className="status-sticker-art" aria-hidden="true">
-        <Image src={imageSrc} alt="" width={760} height={760} className="status-sticker-img" draggable={false} />
+        <Image
+          src={imageSrc}
+          alt=""
+          width={760}
+          height={760}
+          sizes={size === "lg" ? "(max-width: 520px) 75vw, 320px" : size === "md" ? "200px" : "128px"}
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          className="status-sticker-img"
+          draggable={false}
+        />
       </span>
 
       <span className="sticker-copy">

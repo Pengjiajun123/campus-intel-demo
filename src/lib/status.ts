@@ -92,6 +92,10 @@ export function getOverallStickerStatus(cards: IntelCard[]): StickerStatus {
     return statusCopy.missed;
   }
 
+  if (totalCount === 0) {
+    return statusCopy.clear;
+  }
+
   if (highPriorityCount >= 3 || within24Count >= 2) {
     return statusCopy.overload;
   }

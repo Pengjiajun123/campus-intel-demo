@@ -12,6 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const stickerPreloads = [
+  "/stickers/missed-blue-sad.png",
+  "/stickers/overload-red-angry.png",
+  "/stickers/busy-orange-nervous.png",
+  "/stickers/urgent-yellow-uncomfortable.png",
+  "/stickers/easy-pink-happy.png",
+  "/stickers/clear-green-happy.png",
+];
+
 export const metadata: Metadata = {
   title: "校园情报局 Campus Intel",
   description: "面向大学生的 AI 校园信息整理助手 Demo",
@@ -24,6 +34,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        {stickerPreloads.map((src) => (
+          <link key={src} rel="preload" as="image" href={`${basePath}${src}`} type="image/png" />
+        ))}
+      </head>
       <body>{children}</body>
     </html>
   );

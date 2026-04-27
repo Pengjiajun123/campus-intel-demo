@@ -13,13 +13,13 @@ export function Header() {
         </Link>
 
         <nav aria-label="主导航" className="flex items-center gap-1 text-sm font-black text-[#75685f]">
-          <Link className="rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044]" href="/#demo">
-            Demo
+          <Link className="rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044]" href="/import">
+            导入
           </Link>
-          <Link className="rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044]" href="/?showDashboard=1#dashboard">
-            看板
+          <Link className="rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044]" href="/today">
+            行动
           </Link>
-          <Link className="hidden rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044] sm:inline-flex" href="/?showDashboard=1#chat">
+          <Link className="rounded-full px-3 py-2 transition hover:bg-[#f7f1ed] hover:text-[#283044]" href="/assistant">
             助手
           </Link>
         </nav>

@@ -43,10 +43,10 @@ export default async function IntelDetailPage({ params }: IntelDetailPageProps) 
     <main className="page-shell min-h-screen">
       <Header />
 
-      <section className="px-4 pb-12 pt-28">
+      <section className="px-4 pb-12 pt-24">
         <div className="app-container">
-          <Link href="/?showDashboard=1#dashboard" className="pill-button secondary">
-            返回情报看板
+          <Link href="/" className="pill-button secondary w-fit px-5 text-sm">
+            返回首页
           </Link>
 
           <div className="phone-frame mt-6">
@@ -56,6 +56,7 @@ export default async function IntelDetailPage({ params }: IntelDetailPageProps) 
                 title={missed ? "先补救它" : status.shortLabel}
                 subtitle={status.description}
                 size="lg"
+                className="mx-auto"
               />
 
               <article className="sticker-card mt-5 bg-[#fffdf8] p-5">

@@ -28,8 +28,8 @@ export function IntelActionPanel({ card }: IntelActionPanelProps) {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Link href="/?showDashboard=1#dashboard" className="pill-button secondary text-center">
-            返回看板
+          <Link href="/" className="pill-button secondary text-center">
+            返回首页
           </Link>
           <button type="button" onClick={() => setActiveResult("plan")} className="pill-button">
             生成行动计划

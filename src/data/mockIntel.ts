@@ -1,4 +1,5 @@
 import type { AnalyzeStep, ChatExample, IntelCard, RiskReminder } from "@/lib/types";
+import { getMissedIntel, getOpportunityIntel, getRiskIntel, getTodayIntel } from "@/lib/intelSelectors";
 
 export const mockIntelCards: IntelCard[] = [
   {
@@ -123,37 +124,19 @@ export const mockIntelCards: IntelCard[] = [
 ];
 
 export function getTodayMustDo(cards: IntelCard[] = mockIntelCards): IntelCard[] {
-  return cards
-    .filter((card) => !card.tags.includes("已错过"))
-    .filter((card) => card.priority === "高" || card.tags.includes("今日必办"))
-    .sort((a, b) => b.matchScore - a.matchScore);
+  return getTodayIntel(cards);
 }
 
 export function getMissedItems(cards: IntelCard[] = mockIntelCards): IntelCard[] {
-  return cards
-    .filter((card) => card.tags.includes("已错过") || card.category === "已错过事项")
-    .sort((a, b) => b.matchScore - a.matchScore);
+  return getMissedIntel(cards);
 }
 
 export function getOpportunities(cards: IntelCard[] = mockIntelCards): IntelCard[] {
-  const opportunityCategories = new Set(["比赛机会", "实习机会", "讲座活动"]);
-
-  return cards
-    .filter((card) => opportunityCategories.has(card.category))
-    .sort((a, b) => b.matchScore - a.matchScore);
+  return getOpportunityIntel(cards);
 }
 
 export function getRisks(cards: IntelCard[] = mockIntelCards): RiskReminder[] {
-  return cards.flatMap((card) =>
-    card.risks.map((risk, index) => ({
-      id: `${card.id}-risk-${index + 1}`,
-      cardId: card.id,
-      title: card.title,
-      risk,
-      priority: card.priority,
-      source: card.source,
-    })),
-  );
+  return getRiskIntel(cards);
 }
 
 export const analyzeSteps: AnalyzeStep[] = [

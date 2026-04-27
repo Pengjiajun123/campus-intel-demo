@@ -31,11 +31,15 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  width: 100%;
+  overflow-x: hidden;
   color: var(--ink);
   background:
     radial-gradient(circle at 12% 8%, rgba(255, 158, 207, 0.24), transparent 16rem),
@@ -78,17 +82,20 @@ textarea {
 }
 
 .page-shell {
+  width: 100%;
   min-height: 100vh;
   overflow-x: clip;
 }
 
 .app-container {
-  width: min(100% - 1.25rem, 1180px);
+  width: 100%;
+  max-width: 1180px;
   margin-inline: auto;
 }
 
 .phone-frame {
   width: min(100%, 430px);
+  max-width: calc(100vw - 2rem);
   margin-inline: auto;
   border: 10px solid var(--white);
   border-radius: 46px;
@@ -97,12 +104,17 @@ textarea {
 }
 
 .phone-inner {
+  width: 100%;
   border-radius: 34px;
   background:
     radial-gradient(circle at 15% 10%, rgba(255, 158, 207, 0.22), transparent 9rem),
     radial-gradient(circle at 90% 22%, rgba(154, 226, 225, 0.34), transparent 10rem),
     #fffdf8;
   overflow: hidden;
+}
+
+.site-header-bar {
+  width: min(calc(100vw - 1.5rem), 430px);
 }
 
 .sticker-card {
